@@ -33,9 +33,6 @@ app.put('/api/persons/:id', (request, response, next) => {
 app.post('/api/persons', (request, response, next) => {
   const body = request.body
 
-  const personName = body.name
-  const personNumber = body.number
-
   if (body === undefined) {
     return response.status(400).json({
       error: 'content missing',
@@ -43,8 +40,8 @@ app.post('/api/persons', (request, response, next) => {
   }
 
   const person = new Person({
-    name: personName,
-    number: personNumber,
+    name: body.name,
+    number: body.number,
   })
   person
     .save()
